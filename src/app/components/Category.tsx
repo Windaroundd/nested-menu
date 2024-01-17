@@ -89,11 +89,10 @@ const Category = (props: Props) => {
         ) : (
           <>
             <span
-              dangerouslySetInnerHTML={{ __html: category?.name }}
               contentEditable={editMode}
+              suppressContentEditableWarning={editMode}
               ref={inputRef}
               className="break-words"
-              suppressHydrationWarning
             >
               {category?.name}
             </span>
