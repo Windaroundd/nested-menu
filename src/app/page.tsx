@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import App from "./components/App";
+
+const NoSSR = dynamic(() => import("./components/App"), { ssr: false });
 
 export default function Home() {
-  return <App />;
+  return <NoSSR />;
 }

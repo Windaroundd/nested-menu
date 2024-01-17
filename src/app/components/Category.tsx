@@ -1,3 +1,4 @@
+"use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
@@ -65,10 +66,10 @@ const Category = (props: Props) => {
     <div>
       <div
         className={
-          category.id === Item.ROOT ? "inputContainer" : "categoryContainer"
+          category?.id === Item.ROOT ? "inputContainer" : "categoryContainer"
         }
       >
-        {category.id === Item.ROOT ? (
+        {category?.id === Item.ROOT ? (
           <>
             <input
               type="text"
@@ -88,12 +89,13 @@ const Category = (props: Props) => {
         ) : (
           <>
             <span
+              dangerouslySetInnerHTML={{ __html: category?.name }}
               contentEditable={editMode}
-              suppressContentEditableWarning={editMode}
               ref={inputRef}
               className="break-words"
+              suppressHydrationWarning
             >
-              {category.name}
+              {category?.name}
             </span>
 
             <div className="flex mt-2">
