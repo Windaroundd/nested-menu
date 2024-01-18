@@ -21,6 +21,7 @@ const Category = (props: Props) => {
   const [editMode, setEditMode] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [expand, setExpand] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(false);
   const inputRef = useRef<any>(null);
 
   useEffect(() => {
@@ -28,7 +29,11 @@ const Category = (props: Props) => {
   }, [editMode]);
 
   const handleNewCategory = () => {
-    setExpand(!expand);
+    if (firstLoad) {
+      setFirstLoad(false);
+    } else {
+      setExpand(!expand);
+    }
     setShowInput(true);
   };
 
@@ -57,9 +62,10 @@ const Category = (props: Props) => {
     handleDeleteNode(category.id);
   };
 
-  //
+  // open
   useEffect(() => {
     setExpand(true);
+    setFirstLoad(true);
   }, []);
 
   return (
